@@ -72,7 +72,33 @@ Use:
 data.content   // the quote text
 data.author    // the author
 */
- 
+const obj = {
+  "content": "Do not watch the clock. Do what it does. Keep going.",
+  "author": "Sam Levenson"
+}
+
+ document.getElementById("t3-loadQuote").addEventListener("click", function () {
+    fetch("https://dummyjson.com/quotes/random")
+  .then(function (response) {
+    if (!response.ok) {                 // not 2xx → treat as an error
+      throw new Error("HTTP " + response.status);
+    }
+    return response.json();             // turn response body into JS object
+  })
+  .then(function (data) {
+    // use the JSON data here
+    var temp1 = data.content;
+    var temp2 = data.author;
+    document.getElementById("t3-quote").innerHTML =`<p>${data.content}</p>`;
+    data.author;
+  })
+  .catch(function (err) {
+    // show a friendly message or handle the error
+    alert(err)
+  });
+
+});
+
 
 /*  
 =======================================
