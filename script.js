@@ -105,7 +105,7 @@ TODO4: Dammam Weather Now
 Use the OpenWeatherMap API to display live weather data.
 
 🌍 API Link:
-https://api.openweathermap.org/data/2.5/weather?q=Dammam&appid=API_KEY=metric
+https://api.openweathermap.org/data/2.5/weather?q=Dammam&appid=c644b9b9ab439415d89149a304f8c7e4=metric
 
 ⚠️ Replace YOUR_API_KEY with your actual API key from:
 https://openweathermap.org/api
@@ -122,3 +122,21 @@ data.main.temp      → temperature (°C)
 data.main.humidity  → humidity (%)
 data.wind.speed     → wind speed (m/s)
 */
+fetch("https://api.openweathermap.org/data/2.5/weather?q=Dammam&units=metric&appid=39c37c5fdad241db146644d34dbd1118")
+  .then(function (response) {
+    if (!response.ok) {                 // not 2xx → treat as an error
+      throw new Error("HTTP " + response.status);
+    }
+    return response.json();             // turn response body into JS object
+  })
+  .then(function (data) {
+    // use the JSON data here
+    document.getElementById("t4-temp").textContent = data.main.temp;
+    document.getElementById("t4-hum").textContent = data.main.humidity;
+    document.getElementById("t4-wind").textContent = data.wind.speed;
+
+  })
+  .catch(function (err) {
+    // show a friendly message or handle the error
+    alert(err.message);
+  });
