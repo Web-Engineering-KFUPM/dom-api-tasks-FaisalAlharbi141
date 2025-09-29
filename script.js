@@ -72,10 +72,10 @@ Use:
 data.content   // the quote text
 data.author    // the author
 */
-const obj = {
-  "content": "Do not watch the clock. Do what it does. Keep going.",
-  "author": "Sam Levenson"
-}
+// const obj = {
+//   "content": "Do not watch the clock. Do what it does. Keep going.",
+//   "author": "Sam Levenson"
+// }
 
  document.getElementById("t3-loadQuote").addEventListener("click", function () {
     fetch("https://dummyjson.com/quotes/random")
@@ -87,14 +87,12 @@ const obj = {
   })
   .then(function (data) {
     // use the JSON data here
-    var temp1 = data.content;
-    var temp2 = data.author;
-    document.getElementById("t3-quote").innerHTML =`<p>${data.content}</p>`;
-    data.author;
+    document.getElementById("t3-quote").textContent = data.content;
+    document.getElementById("t3-author").textContent = data.author;
   })
   .catch(function (err) {
     // show a friendly message or handle the error
-    alert(err)
+    alert(err.message);
   });
 
 });
